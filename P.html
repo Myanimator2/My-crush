@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Like Me?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0e4d7;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 30px;
+            border: 2px solid #ff6f61;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+            background-color: #fff;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff6f61;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button:hover {
+            background-color: #ff3b2f;
+        }
+        #response {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="question">Hey Priyankhi, I have a question...</h1>
+        <p>Do you like me? 😳</p>
+        <button class="button" onclick="handleResponse('yes')">Yes, I do! 💖</button>
+        <button class="button" id="noButton" onclick="handleResponse('no')">Not really 😅</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('noButton');
+
+        noButton.addEventListener('mouseover', () => {
+            noButton.style.transform = `translate(${Math.random() * 50 - 25}px, ${Math.random() * 50 - 25}px)`;
+        });
+
+        function handleResponse(answer) {
+            const response = document.getElementById('response');
+            const question = document.getElementById('question');
+            if (answer === 'yes') {
+                response.innerHTML = "Yay! You just made my day! 🥰";
+            } else {
+                question.innerHTML = "Please be my girlfriend? 😊";
+                askMoreQuestions();
+            }
+        }
+
+        function askMoreQuestions() {
+            const questions = [
+                "Please, would you reconsider? 🥺",
+                "How about just one date? 😊",
+                "Pretty please? 😘",
+                "At least tell me why? 🤔"
+            ];
+
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < questions.length) {
+                    document.getElementById('response').innerHTML = questions[index];
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 2000); // 2 seconds between each question
+        }
+    </script>
+</body>
+</html>
